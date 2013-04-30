@@ -13,26 +13,20 @@ DOCTYPE html>
 <title>Details</title>
 </head>
 <body>
-<p>
-@Html.ActionLink("Create Flat", "CreateFlat")
-</p>
+<button type="button" name="CreateFlat" onclick="createflat();"> Add Flat to the Project </button>
 <table>
     <tr>
         <th>
-        FlatID
-
+        Flat ID
         </th>
         <th>
-        ProjectID
-
+        Project ID
         </th>
         <th>
-        SuperBuiltUpArea
-
+        Super Built Up Area
         </th>
         <th>
         Layout Image
-
         </th>
         <th></th>
         </tr>
@@ -55,13 +49,19 @@ DOCTYPE html>
 
         </td>
         <td>
-        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        @Html.ActionLink("Edit", "EditFlat", new { id = @Html.DisplayFor(modelItem => item.FlatID) }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.FlatID */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.FlatID */ })
         </td>
     </tr>
     }
 
 </table>
+<script type="text/javascript" language="javascript">
+    function createflat() {
+        var url = '@Url.Action("CreateFlat")';
+        window.location.href = url;
+    }
+</script>
 </body>
 </html>

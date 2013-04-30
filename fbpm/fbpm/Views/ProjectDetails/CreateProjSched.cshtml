@@ -1,0 +1,68 @@
+﻿@model fbpm.Models.ProjectSchedule
+
+@{
+    ViewBag.Title = "CreateProjSched";
+}
+
+<h2>CreateProjSched</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Project Schedule</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScheduleID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScheduleID)
+            @Html.ValidationMessageFor(model => model.ScheduleID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProjectID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProjectID)
+            @Html.ValidationMessageFor(model => model.ProjectID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScheduleText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScheduleText)
+            @Html.ValidationMessageFor(model => model.ScheduleText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScheduleDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScheduleDate)
+            @Html.ValidationMessageFor(model => model.ScheduleDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SchedulePercentage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SchedulePercentage)
+            @Html.ValidationMessageFor(model => model.SchedulePercentage)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProjectDetailProjectID)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

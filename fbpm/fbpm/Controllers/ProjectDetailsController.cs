@@ -51,6 +51,15 @@ namespace fbpm.Controllers
             return View(fd.ToList());
         }
 
+        public ViewResult Projschedule(string id)
+        {
+            var ps = from s in db.ProjectSchedules
+                     where s.ProjectID.Equals(id)
+                     select s;
+
+            return View(ps.ToList());
+        }
+
         //
         // GET: /ProjectDetails/Create
 
@@ -60,6 +69,11 @@ namespace fbpm.Controllers
             return View();
         }
         public ActionResult CreateFlat()
+        {
+            ModelState.Clear();
+            return View();
+        }
+        public ActionResult CreateProjSched()
         {
             ModelState.Clear();
             return View();
@@ -95,6 +109,19 @@ namespace fbpm.Controllers
 
             return View(flatdetail);
         }
+        [HttpPost]
+        public ActionResult CreateProjSched(ProjectSchedule projsched)
+        {
+            ModelState.Clear();
+            if (ModelState.IsValid)
+            {
+                db.ProjectSchedules.Add(projsched);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(projsched);
+        }
 
         //
         // GET: /ProjectDetails/Edit/5
@@ -104,6 +131,30 @@ namespace fbpm.Controllers
             ProjectDetail projectdetail = db.ProjectDetails.Find(id);
             return View(projectdetail);
         }
+
+        //Edit : Flat Details
+
+        public ActionResult EditFlat(string id)
+        {
+            var flatdetail = from s in db.FlatDetails
+                     where s.FlatID.Equals(id)
+                     select s;
+            return View(flatdetail);
+        }
+
+        [HttpPost]
+        public ActionResult EditFlat(FlatDetail flatdetail)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(flatdetail).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(flatdetail);
+        }
+
+
 
         //
         // POST: /ProjectDetails/Edit/5

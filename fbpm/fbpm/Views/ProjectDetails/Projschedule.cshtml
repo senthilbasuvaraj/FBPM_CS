@@ -1,0 +1,61 @@
+﻿@model IEnumerable<fbpm.Models.ProjectSchedule>
+
+@{
+    Layout = null;
+}
+
+<button type="button" name="CreateProjSched" onclick="createps();"> Add project Schedules </button>    
+<table>
+        <tr>
+            <th>
+                Schedule ID
+            </th>
+            <th>
+                Project ID
+            </th>
+            <th>
+                Schedule Description
+            </th>
+            <th>
+                Schedule Date
+            </th>
+            <th>
+                Schedule Percentage
+            </th>
+            <th> Actions </th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchedulePercentage)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+<script type="text/javascript" language="javascript">
+    function createps() {
+        alert('Hi');
+        var url = '@Url.Action("CreateProjSched")';
+        window.location.href = url;
+    }
+
+</script>

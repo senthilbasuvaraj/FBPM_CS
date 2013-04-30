@@ -4,32 +4,34 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>List of Projects</h2>
+    <button type="button" name="CreateProject" onclick="createproj();"> Create Project </button>
 <table>
     <tr>
         <th>
-            ProjectID
+            Select
         </th>
         <th>
-            ProjectName
+            Project ID
         </th>
         <th>
-            NoOfBlocks
+            Project Name
         </th>
         <th>
-            NoOfFloors
+            No Of Blocks
         </th>
         <th>
-            NoOfFlats
+            No Of Floors
+        </th>
+        <th>
+            No Of Flats
         </th>
         <th>
             Amenities
         </th>
-        <th></th>
+        <th>
+            Action
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -68,7 +70,10 @@
 <br />
 <br />
 
-<div id='FlatDetailcontainer'>Select a Project from the above List</div>
+<div id='ProjSched'> Select a Project for Schedule and Flat Details</div>
+<br />
+<br />
+<div id='FlatDetailcontainer'>Loading...</div>
 
 <script type="text/javascript" language="javascript">
     function handleprojselect(myRadio) {
@@ -76,5 +81,14 @@
         function (viewResult) {
             $("#FlatDetailcontainer").html(viewResult);
         });
+        $.get('@Url.Action("Projschedule", "ProjectDetails")?id=' + myRadio.value,
+        function (viewResult) {
+            $("#ProjSched").html(viewResult);
+        });
+    }
+
+    function createproj() {
+        var url = '@Url.Action("Create")';
+        window.location.href = url;
     }
 </script>
