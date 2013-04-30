@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="fbpmModelStoreContainer" CdmEntityContainer="fbpmProjectDetailsEntities">
+    <EntitySetMapping Name="FlatDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(fbpmModel.FlatDetail)">
+        <MappingFragment StoreEntitySet="FlatDetails">
+          <ScalarProperty Name="FlatID" ColumnName="FlatID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="SuperBuiltUpArea" ColumnName="SuperBuiltUpArea" />
+          <ScalarProperty Name="LayoutImg" ColumnName="LayoutImg" />
+          <ScalarProperty Name="ProjectDetailProjectID" ColumnName="ProjectDetailProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(fbpmModel.ProjectDetail)">
+        <MappingFragment StoreEntitySet="ProjectDetails">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="NoOfBlocks" ColumnName="NoOfBlocks" />
+          <ScalarProperty Name="NoOfFloors" ColumnName="NoOfFloors" />
+          <ScalarProperty Name="NoOfFlats" ColumnName="NoOfFlats" />
+          <ScalarProperty Name="Amenities" ColumnName="Amenities" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectSchedules">
+      <EntityTypeMapping TypeName="IsTypeOf(fbpmModel.ProjectSchedule)">
+        <MappingFragment StoreEntitySet="ProjectSchedules">
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="ScheduleText" ColumnName="ScheduleText" />
+          <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+          <ScalarProperty Name="SchedulePercentage" ColumnName="SchedulePercentage" />
+          <ScalarProperty Name="ProjectDetailProjectID" ColumnName="ProjectDetailProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

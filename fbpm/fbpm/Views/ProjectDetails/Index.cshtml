@@ -1,0 +1,80 @@
+﻿@model IEnumerable<fbpm.Models.ProjectDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            ProjectID
+        </th>
+        <th>
+            ProjectName
+        </th>
+        <th>
+            NoOfBlocks
+        </th>
+        <th>
+            NoOfFloors
+        </th>
+        <th>
+            NoOfFlats
+        </th>
+        <th>
+            Amenities
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <input type="radio" id="selectproj" name="selectproj" onclick="handleprojselect(this);" value=@item.ProjectID />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfBlocks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfFloors)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfFlats)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amenities)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+
+<br />
+<br />
+
+<div id='FlatDetailcontainer'>Select a Project from the above List</div>
+
+<script type="text/javascript" language="javascript">
+    function handleprojselect(myRadio) {
+        $.get('@Url.Action("Details", "ProjectDetails")?id=' + myRadio.value,
+        function (viewResult) {
+            $("#FlatDetailcontainer").html(viewResult);
+        });
+    }
+</script>

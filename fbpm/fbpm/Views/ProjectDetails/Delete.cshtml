@@ -1,0 +1,48 @@
+﻿@model fbpm.Models.ProjectDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ProjectDetail</legend>
+
+    <div class="display-label">ProjectID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectID)
+    </div>
+
+    <div class="display-label">ProjectName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+
+    <div class="display-label">NoOfBlocks</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoOfBlocks)
+    </div>
+
+    <div class="display-label">NoOfFloors</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoOfFloors)
+    </div>
+
+    <div class="display-label">NoOfFlats</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NoOfFlats)
+    </div>
+
+    <div class="display-label">Amenities</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Amenities)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

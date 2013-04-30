@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fbpmModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="fbpmProjectDetailsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FlatDetails" EntityType="fbpmModel.FlatDetail" />
+    <EntitySet Name="ProjectDetails" EntityType="fbpmModel.ProjectDetail" />
+    <EntitySet Name="ProjectSchedules" EntityType="fbpmModel.ProjectSchedule" />
+    <AssociationSet Name="ProjectDetailFlatDetail" Association="fbpmModel.ProjectDetailFlatDetail">
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+      <End Role="FlatDetail" EntitySet="FlatDetails" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectDetailProjectSchedule" Association="fbpmModel.ProjectDetailProjectSchedule">
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+      <End Role="ProjectSchedule" EntitySet="ProjectSchedules" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FlatDetail">
+    <Key>
+      <PropertyRef Name="FlatID" />
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="FlatID" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="ProjectID" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Name="SuperBuiltUpArea" Type="Int64" />
+    <Property Name="LayoutImg" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="ProjectDetail" Relationship="fbpmModel.ProjectDetailFlatDetail" FromRole="FlatDetail" ToRole="ProjectDetail" />
+    <Property Type="String" Name="ProjectDetailProjectID" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ProjectDetail">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="ProjectName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="NoOfBlocks" Type="Int32" />
+    <Property Name="NoOfFloors" Type="Int32" />
+    <Property Name="NoOfFlats" Type="Int64" />
+    <Property Name="Amenities" Type="String" MaxLength="1500" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="FlatDetails" Relationship="fbpmModel.ProjectDetailFlatDetail" FromRole="ProjectDetail" ToRole="FlatDetail" />
+    <NavigationProperty Name="ProjectSchedules" Relationship="fbpmModel.ProjectDetailProjectSchedule" FromRole="ProjectDetail" ToRole="ProjectSchedule" />
+  </EntityType>
+  <EntityType Name="ProjectSchedule">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="ProjectID" Type="String" Nullable="false" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Name="ScheduleText" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="ScheduleDate" Type="DateTime" />
+    <Property Name="SchedulePercentage" Type="Int32" />
+    <NavigationProperty Name="ProjectDetail" Relationship="fbpmModel.ProjectDetailProjectSchedule" FromRole="ProjectSchedule" ToRole="ProjectDetail" />
+    <Property Type="String" Name="ProjectDetailProjectID" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="ProjectDetailFlatDetail">
+    <End Type="fbpmModel.ProjectDetail" Role="ProjectDetail" Multiplicity="1" />
+    <End Type="fbpmModel.FlatDetail" Role="FlatDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectDetail">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="FlatDetail">
+        <PropertyRef Name="ProjectDetailProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectDetailProjectSchedule">
+    <End Type="fbpmModel.ProjectDetail" Role="ProjectDetail" Multiplicity="1" />
+    <End Type="fbpmModel.ProjectSchedule" Role="ProjectSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectDetail">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="ProjectSchedule">
+        <PropertyRef Name="ProjectDetailProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

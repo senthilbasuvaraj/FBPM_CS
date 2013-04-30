@@ -1,0 +1,67 @@
+﻿@model IEnumerable<fbpm.Models.FlatDetail>
+
+@{
+
+Layout = null;
+}
+
+<!
+
+DOCTYPE html>
+<html>
+<head>
+<title>Details</title>
+</head>
+<body>
+<p>
+@Html.ActionLink("Create New", "Create", "FlatDetails")
+</p>
+<table>
+    <tr>
+        <th>
+        FlatID
+
+        </th>
+        <th>
+        ProjectID
+
+        </th>
+        <th>
+        SuperBuiltUpArea
+
+        </th>
+        <th>
+        Layout Image
+
+        </th>
+        <th></th>
+        </tr>
+        @foreach (var item in Model) {
+        <tr>
+        <td>
+        @Html.DisplayFor(modelItem => item.FlatID)
+
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.ProjectID)
+
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.SuperBuiltUpArea)
+
+        </td>
+        <td>
+        @Html.DisplayFor(modelItem => item.LayoutImg)
+
+        </td>
+        <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+    }
+
+</table>
+</body>
+</html>
