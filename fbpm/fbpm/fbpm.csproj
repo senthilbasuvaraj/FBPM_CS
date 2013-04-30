@@ -194,10 +194,13 @@
     <Content Include="Views\ProjectDetails\Create.cshtml" />
     <Content Include="Views\ProjectDetails\Edit.cshtml" />
     <Content Include="Views\ProjectDetails\Delete.cshtml" />
-    <Content Include="Views\FlatDetails\Create.cshtml" />
+    <Content Include="Views\ProjectDetails\CreateFlat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\FlatDetails\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -216,7 +219,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>49172</DevelopmentServerPort>
+          <DevelopmentServerPort>61407</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

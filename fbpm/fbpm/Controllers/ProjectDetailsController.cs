@@ -8,7 +8,22 @@ using System.Web.Mvc;
 using fbpm.Models;
 
 namespace fbpm.Controllers
-{ 
+{
+    public class NoCacheAttribute : ActionFilterAttribute
+    {
+        public override void OnResultExecuting(ResultExecutingContext filterContext)
+        {
+            filterContext.HttpContext.Response.Cache.SetExpires(DateTime.UtcNow.AddDays(-1));
+            filterContext.HttpContext.Response.Cache.SetValidUntilExpires(false);
+            filterContext.HttpContext.Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+            filterContext.HttpContext.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            filterContext.HttpContext.Response.Cache.SetNoStore();
+
+            base.OnResultExecuting(filterContext);
+        }
+    }
+    [NoCache]
+    [HandleError]
     public class ProjectDetailsController : Controller
     {
         private fbpmProjectDetailsEntities db = new fbpmProjectDetailsEntities();
@@ -18,6 +33,7 @@ namespace fbpm.Controllers
 
         public ViewResult Index()
         {
+            ModelState.Clear();
             return View(db.ProjectDetails.ToList());
         }
 
@@ -26,6 +42,8 @@ namespace fbpm.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ViewResult Details(string id)
         {
+
+            ModelState.Clear();
             var fd = from s in db.FlatDetails
                      where s.ProjectID.Equals(id)
                      select s;
@@ -38,15 +56,21 @@ namespace fbpm.Controllers
 
         public ActionResult Create()
         {
+            ModelState.Clear();
+            return View();
+        }
+        public ActionResult CreateFlat()
+        {
+            ModelState.Clear();
             return View();
         } 
-
         //
         // POST: /ProjectDetails/Create
 
         [HttpPost]
         public ActionResult Create(ProjectDetail projectdetail)
         {
+            ModelState.Clear();
             if (ModelState.IsValid)
             {
                 db.ProjectDetails.Add(projectdetail);
@@ -56,7 +80,22 @@ namespace fbpm.Controllers
 
             return View(projectdetail);
         }
-        
+
+        [HttpPost]
+        public ActionResult CreateFlat(FlatDetail flatdetail)
+        {
+            ModelState.Clear();
+            if (ModelState.IsValid)
+            {
+                db.Entry(flatdetail).State = EntityState.Modified;
+                db.FlatDetails.Add(flatdetail);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(flatdetail);
+        }
+
         //
         // GET: /ProjectDetails/Edit/5
  
