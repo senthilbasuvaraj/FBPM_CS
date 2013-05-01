@@ -1,8 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="fbpmUserModelStoreContainer" CdmEntityContainer="fbpmUserEntities">
+  <EntityContainerMapping StorageEntityContainer="fbpmUserPaySchedModelStoreContainer" CdmEntityContainer="fbpmUserPaySchedEntities">
+    <EntitySetMapping Name="PaymentSchedule">
+      <EntityTypeMapping TypeName="IsTypeOf(fbpmUserPaySchedModel.PaymentSchedule)">
+        <MappingFragment StoreEntitySet="PaymentSchedule">
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleText" ColumnName="ScheduleText" />
+          <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+          <ScalarProperty Name="SchedulePercentage" ColumnName="SchedulePercentage" />
+          <ScalarProperty Name="BookedDate" ColumnName="BookedDate" />
+          <ScalarProperty Name="BookingAmount" ColumnName="BookingAmount" />
+          <ScalarProperty Name="ScheduleAmount" ColumnName="ScheduleAmount" />
+          <ScalarProperty Name="RemainingAmount" ColumnName="RemainingAmount" />
+          <ScalarProperty Name="UserDetailsUserID" ColumnName="UserDetailsUserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="UserDetails">
-      <EntityTypeMapping TypeName="IsTypeOf(fbpmUserModel.UserDetail)">
+      <EntityTypeMapping TypeName="IsTypeOf(fbpmUserPaySchedModel.UserDetails)">
         <MappingFragment StoreEntitySet="UserDetails">
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="Password" ColumnName="Password" />

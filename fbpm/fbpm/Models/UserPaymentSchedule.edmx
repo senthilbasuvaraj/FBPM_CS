@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="fbpmUserPaySchedModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="fbpmUserPaySchedModelStoreContainer">
+    <EntitySet Name="PaymentSchedule" EntityType="fbpmUserPaySchedModel.Store.PaymentSchedule" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserDetails" EntityType="fbpmUserPaySchedModel.Store.UserDetails" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserDetailsPaymentSchedule" Association="fbpmUserPaySchedModel.Store.UserDetailsPaymentSchedule">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="PaymentSchedule" EntitySet="PaymentSchedule" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PaymentSchedule">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+    </Key>
+    <Property Name="ScheduleID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="ScheduleText" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="ScheduleDate" Type="datetime" Nullable="true" />
+    <Property Name="SchedulePercentage" Type="int" Nullable="true" />
+    <Property Name="BookedDate" Type="datetime" Nullable="true" />
+    <Property Name="BookingAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="ScheduleAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="RemainingAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="UserDetailsUserID" Type="varchar" Nullable="false" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="EmailID" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Contact1" Type="varchar" Nullable="true" MaxLength="12" />
+    <Property Name="Contact2" Type="varchar" Nullable="true" MaxLength="12" />
+    <Property Name="FullAddress" Type="varchar" Nullable="true" MaxLength="200" />
+    <Property Name="State" Type="varchar" Nullable="true" MaxLength="25" />
+    <Property Name="Country" Type="varchar" Nullable="true" MaxLength="20" />
+    <Property Name="Role" Type="int" Nullable="true" />
+    <Property Name="PANNo" Type="varchar" Nullable="true" MaxLength="10" />
+    <Property Name="ProjectName" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="BookedDate" Type="datetime" Nullable="true" />
+    <Property Name="BookedAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="UserName" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <Association Name="UserDetailsPaymentSchedule">
+    <End Role="UserDetails" Type="fbpmUserPaySchedModel.Store.UserDetails" Multiplicity="1" />
+    <End Role="PaymentSchedule" Type="fbpmUserPaySchedModel.Store.PaymentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="PaymentSchedule">
+        <PropertyRef Name="UserDetailsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fbpmUserPaySchedModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="fbpmUserPaySchedEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PaymentSchedule" EntityType="fbpmUserPaySchedModel.PaymentSchedule" />
+          <EntitySet Name="UserDetails" EntityType="fbpmUserPaySchedModel.UserDetails" />
+          <AssociationSet Name="UserDetailsPaymentSchedule" Association="fbpmUserPaySchedModel.UserDetailsPaymentSchedule">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="PaymentSchedule" EntitySet="PaymentSchedule" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="PaymentSchedule">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="Guid" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="ScheduleText" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ScheduleDate" Type="DateTime" />
+          <Property Name="SchedulePercentage" Type="Int32" />
+          <Property Name="BookedDate" Type="DateTime" />
+          <Property Name="BookingAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ScheduleAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="RemainingAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="UserDetail" Relationship="fbpmUserPaySchedModel.UserDetailsPaymentSchedule" FromRole="PaymentSchedule" ToRole="UserDetails" />
+          <Property Type="String" Name="UserDetailsUserID" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="EmailID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Contact1" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="Contact2" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="FullAddress" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Role" Type="Int32" />
+          <Property Name="PANNo" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="ProjectName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="BookedDate" Type="DateTime" />
+          <Property Name="BookedAmount" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="PaymentSchedules" Relationship="fbpmUserPaySchedModel.UserDetailsPaymentSchedule" FromRole="UserDetails" ToRole="PaymentSchedule" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="UserDetailsPaymentSchedule">
+          <End Type="fbpmUserPaySchedModel.UserDetails" Role="UserDetails" Multiplicity="1" />
+          <End Type="fbpmUserPaySchedModel.PaymentSchedule" Role="PaymentSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="PaymentSchedule">
+              <PropertyRef Name="UserDetailsUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="fbpmUserPaySchedModelStoreContainer" CdmEntityContainer="fbpmUserPaySchedEntities">
+    <EntitySetMapping Name="PaymentSchedule">
+      <EntityTypeMapping TypeName="IsTypeOf(fbpmUserPaySchedModel.PaymentSchedule)">
+        <MappingFragment StoreEntitySet="PaymentSchedule">
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ScheduleText" ColumnName="ScheduleText" />
+          <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
+          <ScalarProperty Name="SchedulePercentage" ColumnName="SchedulePercentage" />
+          <ScalarProperty Name="BookedDate" ColumnName="BookedDate" />
+          <ScalarProperty Name="BookingAmount" ColumnName="BookingAmount" />
+          <ScalarProperty Name="ScheduleAmount" ColumnName="ScheduleAmount" />
+          <ScalarProperty Name="RemainingAmount" ColumnName="RemainingAmount" />
+          <ScalarProperty Name="UserDetailsUserID" ColumnName="UserDetailsUserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDetails">
+      <EntityTypeMapping TypeName="IsTypeOf(fbpmUserPaySchedModel.UserDetails)">
+        <MappingFragment StoreEntitySet="UserDetails">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="Contact1" ColumnName="Contact1" />
+          <ScalarProperty Name="Contact2" ColumnName="Contact2" />
+          <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="PANNo" ColumnName="PANNo" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="BookedDate" ColumnName="BookedDate" />
+          <ScalarProperty Name="BookedAmount" ColumnName="BookedAmount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="UserPaymentSchedule">
+        <EntityTypeShape EntityType="fbpmUserPaySchedModel.PaymentSchedule" Width="1.5" PointX="0.75" PointY="0.75" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="fbpmUserPaySchedModel.UserDetails" Width="1.5" PointX="2.75" PointY="0.75" Height="3.5186979166666656" IsExpanded="true" />
+        <AssociationConnector Association="fbpmUserPaySchedModel.UserDetailsPaymentSchedule">
+          <ConnectorPoint PointX="2.75" PointY="2.3170475260416667" />
+          <ConnectorPoint PointX="2.25" PointY="2.3170475260416667" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

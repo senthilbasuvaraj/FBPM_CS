@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fbpmUserPaySchedModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="fbpmUserPaySchedEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="PaymentSchedule" EntityType="fbpmUserPaySchedModel.PaymentSchedule" />
+    <EntitySet Name="UserDetails" EntityType="fbpmUserPaySchedModel.UserDetails" />
+    <AssociationSet Name="UserDetailsPaymentSchedule" Association="fbpmUserPaySchedModel.UserDetailsPaymentSchedule">
+      <End Role="UserDetails" EntitySet="UserDetails" />
+      <End Role="PaymentSchedule" EntitySet="PaymentSchedule" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PaymentSchedule">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+    </Key>
+    <Property Name="ScheduleID" Type="Guid" Nullable="false" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="ScheduleText" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="ScheduleDate" Type="DateTime" />
+    <Property Name="SchedulePercentage" Type="Int32" />
+    <Property Name="BookedDate" Type="DateTime" />
+    <Property Name="BookingAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ScheduleAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="RemainingAmount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="UserDetail" Relationship="fbpmUserPaySchedModel.UserDetailsPaymentSchedule" FromRole="PaymentSchedule" ToRole="UserDetails" />
+    <Property Type="String" Name="UserDetailsUserID" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserDetails">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="EmailID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Contact1" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="Contact2" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="FullAddress" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Role" Type="Int32" />
+    <Property Name="PANNo" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ProjectName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="BookedDate" Type="DateTime" />
+    <Property Name="BookedAmount" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="PaymentSchedules" Relationship="fbpmUserPaySchedModel.UserDetailsPaymentSchedule" FromRole="UserDetails" ToRole="PaymentSchedule" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="UserDetailsPaymentSchedule">
+    <End Type="fbpmUserPaySchedModel.UserDetails" Role="UserDetails" Multiplicity="1" />
+    <End Type="fbpmUserPaySchedModel.PaymentSchedule" Role="PaymentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserDetails">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="PaymentSchedule">
+        <PropertyRef Name="UserDetailsUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,96 @@
+﻿@model fbpm.Models.PaymentSchedule
+
+@{
+    ViewBag.Title = "Create Payment Schedule";
+}
+
+<h2>Create Payment Schedule</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>PaymentSchedule</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScheduleID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScheduleID)
+            @Html.ValidationMessageFor(model => model.ScheduleID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserID)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(x => x.UserID, new SelectList(Model.UserDetailList, "UserID", "UserID"))
+            @Html.ValidationMessageFor(model => model.UserID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScheduleText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScheduleText)
+            @Html.ValidationMessageFor(model => model.ScheduleText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScheduleDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScheduleDate)
+            @Html.ValidationMessageFor(model => model.ScheduleDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SchedulePercentage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.SchedulePercentage)
+            @Html.ValidationMessageFor(model => model.SchedulePercentage)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookedDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookedDate)
+            @Html.ValidationMessageFor(model => model.BookedDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BookingAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BookingAmount)
+            @Html.ValidationMessageFor(model => model.BookingAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ScheduleAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ScheduleAmount)
+            @Html.ValidationMessageFor(model => model.ScheduleAmount)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RemainingAmount)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RemainingAmount)
+            @Html.ValidationMessageFor(model => model.RemainingAmount)
+        </div>
+        <p>
+            <input type="submit" value="Create Payment Schedule" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

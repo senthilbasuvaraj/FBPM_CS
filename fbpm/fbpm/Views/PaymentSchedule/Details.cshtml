@@ -1,0 +1,91 @@
+﻿@model IEnumerable<fbpm.Models.PaymentSchedule>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Payment Schedules</title>
+</head>
+<body>
+    <button type="button" name="CreateProject" onclick="createproj();"> Create Payment Schedule </button>    <table>
+        <tr>
+            <th>
+                Schedule ID
+            </th>
+            <th>
+                User ID
+            </th>
+            <th>
+                Schedule Description
+            </th>
+            <th>
+                Schedule Date
+            </th>
+            <th>
+                Schedule Percentage
+            </th>
+            <th>
+                Booked Date
+            </th>
+            <th>
+                Booking Amount
+            </th>
+            <th>
+                Schedule Amount
+            </th>
+            <th>
+                Remaining Amount
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SchedulePercentage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduleAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RemainingAmount)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+<script type="text/javascript" language="javascript">
+    function createproj() {
+        var url = '@Url.Action("CreatePaySched")';
+        window.location.href = url;
+        }
+</script>    
+</body>
+</html>

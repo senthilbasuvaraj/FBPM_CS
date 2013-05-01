@@ -20,11 +20,12 @@
     <Property Name="FullAddress" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="State" Type="varchar" Nullable="true" MaxLength="25" />
     <Property Name="Country" Type="varchar" Nullable="true" MaxLength="20" />
-    <Property Name="Role" Type="int" Nullable="true" />
+    <Property Name="Role" Type="int" Nullable="true" DefaultValue="400" />
     <Property Name="PANNo" Type="varchar" Nullable="true" MaxLength="10" />
     <Property Name="ProjectName" Type="varchar" Nullable="true" MaxLength="100" />
     <Property Name="BookedDate" Type="datetime" Nullable="true" />
     <Property Name="BookedAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="UserName" Type="varchar" Nullable="true" MaxLength="50" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -50,6 +51,7 @@
           <Property Name="ProjectName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="BookedDate" Type="DateTime" />
           <Property Name="BookedAmount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -73,6 +75,7 @@
           <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
           <ScalarProperty Name="BookedDate" ColumnName="BookedDate" />
           <ScalarProperty Name="BookedAmount" ColumnName="BookedAmount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

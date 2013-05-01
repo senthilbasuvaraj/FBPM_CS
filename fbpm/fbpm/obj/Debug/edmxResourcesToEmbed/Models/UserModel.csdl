@@ -20,5 +20,6 @@
     <Property Name="ProjectName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="BookedDate" Type="DateTime" />
     <Property Name="BookedAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

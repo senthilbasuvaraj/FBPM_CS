@@ -7,9 +7,9 @@
 <h2>Details</h2>
 
 <fieldset>
-    <legend>UserDetail</legend>
+    <legend>Customer Detail</legend>
 
-    <div class="display-label">UserID</div>
+    <div class="display-label">User ID</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.UserID)
     </div>
@@ -19,22 +19,28 @@
         @Html.DisplayFor(model => model.Password)
     </div>
 
-    <div class="display-label">EmailID</div>
+    <div class="display-label">User Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+
+    <div class="display-label">EMail ID</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.EmailID)
     </div>
 
-    <div class="display-label">Contact1</div>
+    <div class="display-label">Contact #1</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Contact1)
     </div>
 
-    <div class="display-label">Contact2</div>
+    <div class="display-label">Contact #2</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Contact2)
     </div>
 
-    <div class="display-label">FullAddress</div>
+    <div class="display-label">Complete Address</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.FullAddress)
     </div>
@@ -54,27 +60,27 @@
         @Html.DisplayFor(model => model.Role)
     </div>
 
-    <div class="display-label">PANNo</div>
+    <div class="display-label">PAN Number</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.PANNo)
     </div>
 
-    <div class="display-label">ProjectName</div>
+    <div class="display-label">Project Name</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.ProjectName)
     </div>
 
-    <div class="display-label">BookedDate</div>
+    <div class="display-label">Booked Date</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.BookedDate)
     </div>
 
-    <div class="display-label">BookedAmount</div>
+    <div class="display-label">Booked Amount</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.BookedAmount)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = @Html.DisplayFor(model => model.UserID) }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

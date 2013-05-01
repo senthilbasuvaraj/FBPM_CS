@@ -9,46 +9,32 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+
 namespace fbpm.Models
 {
-    public partial class UserDetail
+    public partial class UserDetails
     {
-        public UserDetail()
+        public UserDetails()
         {
-            this.Role = 400;
+            this.PaymentSchedules = new HashSet<PaymentSchedule>();
         }
-        
-        [Display(Name="User ID")]
+    
         public string UserID { get; set; }
-        [Display(Name = "Password")]
         public string Password { get; set; }
-        [Display(Name = "EMail ID")]
         public string EmailID { get; set; }
-        [Display(Name = "Contact #1")]
         public string Contact1 { get; set; }
-        [Display(Name = "Contact #2")]
         public string Contact2 { get; set; }
-        [Display(Name = "Complete Address")]
         public string FullAddress { get; set; }
-        [Display(Name = "State")]
         public string State { get; set; }
-        [Display(Name = "Country")]
         public string Country { get; set; }
-        [Display(Name = "Role")]
         public Nullable<int> Role { get; set; }
-        [Display(Name = "PAN Number")]
         public string PANNo { get; set; }
-        [Display(Name = "Project Name")]
         public string ProjectName { get; set; }
-        [Display(Name = "Booked Date")]
         public Nullable<System.DateTime> BookedDate { get; set; }
-        [Display(Name = "Booked Number")]
         public Nullable<decimal> BookedAmount { get; set; }
-        [Display(Name = "User Name")]
         public string UserName { get; set; }
-
-        public IEnumerable<ProjectDetail> ProjectDetail { get; set; }
+    
+        public virtual ICollection<PaymentSchedule> PaymentSchedules { get; set; }
     }
     
 }

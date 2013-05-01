@@ -15,10 +15,11 @@
     <Property Name="FullAddress" Type="varchar" Nullable="true" MaxLength="200" />
     <Property Name="State" Type="varchar" Nullable="true" MaxLength="25" />
     <Property Name="Country" Type="varchar" Nullable="true" MaxLength="20" />
-    <Property Name="Role" Type="int" Nullable="true" />
+    <Property Name="Role" Type="int" Nullable="true" DefaultValue="400" />
     <Property Name="PANNo" Type="varchar" Nullable="true" MaxLength="10" />
     <Property Name="ProjectName" Type="varchar" Nullable="true" MaxLength="100" />
     <Property Name="BookedDate" Type="datetime" Nullable="true" />
     <Property Name="BookedAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
+    <Property Name="UserName" Type="varchar" Nullable="true" MaxLength="50" />
   </EntityType>
 </Schema>
