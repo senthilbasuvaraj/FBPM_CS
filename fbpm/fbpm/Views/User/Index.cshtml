@@ -1,0 +1,112 @@
+﻿@model IEnumerable<fbpm.Models.UserDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Customers</h2>
+<button type="button" name="CreateUser" onclick="createuser();"> Create Customer </button>
+<table>
+    <tr>
+        <th>
+            User ID
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Email ID
+        </th>
+        <th>
+            Contact #1
+        </th>
+        <th>
+            Contact #2
+        </th>
+        <th>
+            Complete Address
+        </th>
+        <th>
+            State
+        </th>
+        <th>
+            Country
+        </th>
+        <th>
+            Role
+        </th>
+        <th>
+            PAN Number
+        </th>
+        <th>
+            Project Name
+        </th>
+        <th>
+            Booked Date
+        </th>
+        <th>
+            Booked Amount
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (@Html.DisplayFor(modelItem => item.Role).ToString().Equals("400"))
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PANNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookedAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = @Html.DisplayFor(modelItem => item.UserID) }) |
+            @Html.ActionLink("Details", "Details", new { id = @Html.DisplayFor(modelItem => item.UserID) }) |
+            @Html.ActionLink("Delete", "Delete", new { id = @Html.DisplayFor(modelItem => item.UserID) })
+        </td>
+    </tr>
+    }
+}
+
+</table>
+
+<script type="text/javascript" language="javascript">
+    function createuser() {
+        var url = '@Url.Action("Create")';
+        window.location.href = url;
+    }
+</script>

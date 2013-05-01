@@ -9,7 +9,7 @@ using fbpm.Models;
 
 namespace fbpm.Controllers
 {
-    public class NoCacheAttribute : ActionFilterAttribute
+    public class NoCacheAttributeUser : ActionFilterAttribute
     {
         public override void OnResultExecuting(ResultExecutingContext filterContext)
         {
@@ -22,7 +22,7 @@ namespace fbpm.Controllers
             base.OnResultExecuting(filterContext);
         }
     }
-    [NoCache]
+    [NoCacheAttributeUser]
     [HandleError]
     public class ProjectDetailsController : Controller
     {

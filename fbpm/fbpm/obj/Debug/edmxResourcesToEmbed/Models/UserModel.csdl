@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="fbpmUserModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="fbpmUserEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UserDetails" EntityType="fbpmUserModel.UserDetail" />
+  </EntityContainer>
+  <EntityType Name="UserDetail">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="EmailID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Contact1" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="Contact2" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="FullAddress" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="State" Type="String" MaxLength="25" Unicode="false" FixedLength="false" />
+    <Property Name="Country" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Role" Type="Int32" DefaultValue="400" />
+    <Property Name="PANNo" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="ProjectName" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="BookedDate" Type="DateTime" />
+    <Property Name="BookedAmount" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+</Schema>

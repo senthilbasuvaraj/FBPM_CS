@@ -1,0 +1,83 @@
+﻿@model fbpm.Models.UserDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Customer Detail</legend>
+
+    <div class="display-label">Customer ID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserID)
+    </div>
+
+    <div class="display-label">Password</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Password)
+    </div>
+
+    <div class="display-label">Email ID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailID)
+    </div>
+
+    <div class="display-label">Contact #1</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact1)
+    </div>
+
+    <div class="display-label">Contact #2</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact2)
+    </div>
+
+    <div class="display-label">Complete Address</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FullAddress)
+    </div>
+
+    <div class="display-label">State</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.State)
+    </div>
+
+    <div class="display-label">Country</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Country)
+    </div>
+
+    <div class="display-label">Role</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Role)
+    </div>
+
+    <div class="display-label">PAN Number</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PANNo)
+    </div>
+
+    <div class="display-label">Project Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectName)
+    </div>
+
+    <div class="display-label">Booked Date</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookedDate)
+    </div>
+
+    <div class="display-label">Booked Amount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BookedAmount)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
