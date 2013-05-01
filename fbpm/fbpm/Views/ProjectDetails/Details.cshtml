@@ -50,8 +50,7 @@ DOCTYPE html>
         </td>
         <td>
         @Html.ActionLink("Edit", "EditFlat", new { id = @Html.DisplayFor(modelItem => item.FlatID) }) |
-        @Html.ActionLink("Details", "Details", new { /* id=item.FlatID */ }) |
-        @Html.ActionLink("Delete", "Delete", new { /* id=item.FlatID */ })
+        @Html.ActionLink("Delete", "DeleteFlat", new { id = @Html.DisplayFor(modelItem => item.FlatID) })
         </td>
     </tr>
     }

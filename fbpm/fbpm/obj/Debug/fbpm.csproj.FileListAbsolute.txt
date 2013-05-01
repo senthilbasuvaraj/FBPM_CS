@@ -11,3 +11,4 @@ C:\Users\I048564\Documents\GitHub\FBPM_CS\fbpm\fbpm\bin\EntityFramework.dll
 C:\Users\I048564\Documents\GitHub\FBPM_CS\fbpm\fbpm\bin\EntityFramework.xml
 C:\Users\I048564\Documents\GitHub\FBPM_CS\fbpm\fbpm\obj\Debug\fbpm.dll
 C:\Users\I048564\Documents\GitHub\FBPM_CS\fbpm\fbpm\obj\Debug\fbpm.pdb
+C:\Users\I048564\Documents\GitHub\FBPM_CS\fbpm\fbpm\obj\Debug\fbpm.csprojResolveAssemblyReference.cache

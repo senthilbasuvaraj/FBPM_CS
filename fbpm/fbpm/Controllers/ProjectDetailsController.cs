@@ -136,9 +136,8 @@ namespace fbpm.Controllers
 
         public ActionResult EditFlat(string id)
         {
-            var flatdetail = from s in db.FlatDetails
-                     where s.FlatID.Equals(id)
-                     select s;
+          //  var flatdetail = from s in db.FlatDetails where s.FlatID.Equals(id)               select s;
+            var flatdetail = db.FlatDetails.Single(r => r.FlatID == id);
             return View(flatdetail);
         }
 
@@ -154,7 +153,27 @@ namespace fbpm.Controllers
             return View(flatdetail);
         }
 
+        //Edit : Project Schedule
 
+        public ActionResult EditProjSched(int id, string pid)
+        {
+            //  var flatdetail = from s in db.FlatDetails where s.FlatID.Equals(id)               select s;
+            var projsched = db.ProjectSchedules.Find(id, pid);
+//                Single((r => r.ScheduleID == id) && (r => r.ScheduleID == id));
+            return View(projsched);
+        }
+
+        [HttpPost]
+        public ActionResult EditProjSched(ProjectSchedule projsched)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(projsched).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(projsched);
+        }
 
         //
         // POST: /ProjectDetails/Edit/5
@@ -191,6 +210,48 @@ namespace fbpm.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        // GET: /Flat Details/Delete/5
+
+        public ActionResult DeleteFlat(string id)
+        {
+            var flatdetail = db.FlatDetails.Single(r => r.FlatID == id);
+            return View(flatdetail);
+        }
+
+        //
+        // POST: /Flat Details/Delete/5
+
+        [HttpPost, ActionName("DeleteFlat")]
+        public ActionResult DeleteFlatConfirmed(string id)
+        {
+            var flatdetail = db.FlatDetails.Single(r => r.FlatID == id);
+            db.FlatDetails.Remove(flatdetail);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // GET: /Proj Schedule Details/Delete/5
+
+        public ActionResult DeleteProjSched(int id, string pid)
+        {
+            var projsched = db.ProjectSchedules.Find(id, pid);
+            return View(projsched);
+        }
+
+        //
+        // POST: /Flat Details/Delete/5
+
+        [HttpPost, ActionName("DeleteProjSched")]
+        public ActionResult DeleteProjSchedConfirmed(int id, string pid)
+        {
+            var projsched = db.ProjectSchedules.Find(id, pid);
+            db.ProjectSchedules.Remove(projsched);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {

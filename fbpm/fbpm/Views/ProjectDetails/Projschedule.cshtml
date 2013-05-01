@@ -43,9 +43,8 @@
                 @Html.DisplayFor(modelItem => item.SchedulePercentage)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "EditProjSched", new { id = @Html.DisplayFor(modelItem => item.ScheduleID), pid = @Html.DisplayFor(modelItem => item.ProjectID) }) |
+                @Html.ActionLink("Delete", "DeleteProjSched", new { id = @Html.DisplayFor(modelItem => item.ScheduleID), pid = @Html.DisplayFor(modelItem => item.ProjectID) })
             </td>
         </tr>
     }

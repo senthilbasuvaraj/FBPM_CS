@@ -1,0 +1,48 @@
+﻿@model fbpm.Models.ProjectSchedule
+
+@{
+    ViewBag.Title = "DeleteProjSched";
+}
+
+<h2>Delete Project Schedule</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Project Schedule</legend>
+
+    <div class="display-label">ScheduleID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ScheduleID)
+    </div>
+
+    <div class="display-label">ProjectID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectID)
+    </div>
+
+    <div class="display-label">ScheduleText</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ScheduleText)
+    </div>
+
+    <div class="display-label">ScheduleDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ScheduleDate)
+    </div>
+
+    <div class="display-label">SchedulePercentage</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SchedulePercentage)
+    </div>
+
+    <div class="display-label">ProjectDetailProjectID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectDetailProjectID)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete Project Schedule" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

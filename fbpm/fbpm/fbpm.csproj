@@ -198,6 +198,9 @@
     <Content Include="Views\ProjectDetails\CreateProjSched.cshtml" />
     <Content Include="Views\ProjectDetails\Projschedule.cshtml" />
     <Content Include="Views\ProjectDetails\EditFlat.cshtml" />
+    <Content Include="Views\ProjectDetails\DeleteFlat.cshtml" />
+    <Content Include="Views\ProjectDetails\EditProjSched.cshtml" />
+    <Content Include="Views\ProjectDetails\DeleteProjSched.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

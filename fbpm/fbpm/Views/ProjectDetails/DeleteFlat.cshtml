@@ -1,0 +1,33 @@
+﻿@model fbpm.Models.FlatDetail
+
+@{
+    ViewBag.Title = "DeleteFlat";
+}
+
+<h2>DeleteFlat</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Flat Detail</legend>
+
+    <div class="display-label">FlatID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FlatID)
+    </div>
+
+    <div class="display-label">ProjectID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProjectID)
+    </div>
+
+    <div class="display-label">SuperBuiltUpArea</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SuperBuiltUpArea)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete Flat" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
