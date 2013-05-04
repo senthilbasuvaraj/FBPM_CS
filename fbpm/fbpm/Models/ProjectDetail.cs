@@ -9,7 +9,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+
 namespace fbpm.Models
 {
     public partial class ProjectDetail
@@ -19,18 +19,12 @@ namespace fbpm.Models
             this.FlatDetails = new HashSet<FlatDetail>();
             this.ProjectSchedules = new HashSet<ProjectSchedule>();
         }
-
-        [Display(Name = "Project ID")]
+    
         public string ProjectID { get; set; }
-        [Display(Name = "Project Name")]
         public string ProjectName { get; set; }
-        [Display(Name = "Number of Blocks")]
         public Nullable<int> NoOfBlocks { get; set; }
-        [Display(Name = "Number of Floorss")]
         public Nullable<int> NoOfFloors { get; set; }
-        [Display(Name = "Number of Flats")]
         public Nullable<long> NoOfFlats { get; set; }
-        [Display(Name = "List of Amenities")]
         public string Amenities { get; set; }
     
         public virtual ICollection<FlatDetail> FlatDetails { get; set; }

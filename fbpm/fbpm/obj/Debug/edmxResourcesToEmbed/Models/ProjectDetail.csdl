@@ -24,6 +24,9 @@
     <Property Name="LayoutImg" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="ProjectDetail" Relationship="fbpmModel.ProjectDetailFlatDetail" FromRole="FlatDetail" ToRole="ProjectDetail" />
     <Property Type="String" Name="ProjectDetailProjectID" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LayoutImgPath" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LayoutImgType" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="LayoutImage" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="ProjectDetail">
     <Key>

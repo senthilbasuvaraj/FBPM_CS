@@ -9,21 +9,19 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace fbpm.Models
 {
     public partial class FlatDetail
     {
-        [Display(Name = "Flat ID")]
         public string FlatID { get; set; }
-        [Display(Name = "Project ID")]
         public string ProjectID { get; set; }
-        [Display(Name = "Super Built Up Area")]
         public Nullable<long> SuperBuiltUpArea { get; set; }
-        [Display(Name = "Layout Image")]
         public byte[] LayoutImg { get; set; }
         public string ProjectDetailProjectID { get; set; }
+        public string LayoutImgPath { get; set; }
+        public string LayoutImgType { get; set; }
+        public byte[] LayoutImage { get; set; }
     
         public virtual ProjectDetail ProjectDetail { get; set; }
     }

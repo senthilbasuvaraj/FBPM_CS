@@ -9,21 +9,15 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace fbpm.Models
 {
     public partial class ProjectSchedule
     {
-        [Display(Name="Schedule ID")]
         public int ScheduleID { get; set; }
-        [Display(Name = "Project ID")]
         public string ProjectID { get; set; }
-        [Display(Name = "Schedule Description")]
         public string ScheduleText { get; set; }
-        [Display(Name = "Schedule Date")]
         public Nullable<System.DateTime> ScheduleDate { get; set; }
-        [Display(Name = "Schedule Percentage")]
         public Nullable<int> SchedulePercentage { get; set; }
         public string ProjectDetailProjectID { get; set; }
     

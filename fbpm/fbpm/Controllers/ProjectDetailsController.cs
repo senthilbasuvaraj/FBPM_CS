@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using fbpm.Models;
+using System.IO;
+using System.Net.Mime;
 
 namespace fbpm.Controllers
 {
@@ -142,15 +144,39 @@ namespace fbpm.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditFlat(FlatDetail flatdetail)
+        public ActionResult EditFlat(FlatDetail flatdetail, HttpPostedFileBase file)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(flatdetail).State = EntityState.Modified;
+                flatdetail.LayoutImage = new byte[file.ContentLength];
+                flatdetail.LayoutImgType = file.ContentType;
+                BinaryReader reader = new BinaryReader(file.InputStream);
+                flatdetail.LayoutImage = reader.ReadBytes(file.ContentLength);
+//                file.InputStream.Read(flatdetail.LayoutImg, 0, file.ContentLength);
+/*                if (file.ContentLength > 0)
+                {
+                    string filename = Path.GetFileName(file.FileName);
+                    string fileExtension = Path.GetExtension(filename);
+                    if ((fileExtension == ".jpg") || (fileExtension == ".png"))
+                    {
+                        string path = Path.Combine(Server.MapPath("~/App_Data/uploads"), filename);
+                        file.SaveAs(path);
+                        flatdetail.LayoutImgPath = path;
+                    }
+                }
+
+  */            db.Entry(flatdetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(flatdetail);
+        }
+
+        //Get Image
+
+        public FileContentResult GetImage(string id) { 
+            FlatDetail fd = db.FlatDetails.Single(r => r.FlatID == id);
+            return File(fd.LayoutImage, fd.LayoutImgType);
         }
 
         //Edit : Project Schedule

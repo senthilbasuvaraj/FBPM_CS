@@ -4,14 +4,6 @@
     <EntitySet Name="FlatDetails" EntityType="fbpmModel.Store.FlatDetails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProjectDetails" EntityType="fbpmModel.Store.ProjectDetails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ProjectSchedules" EntityType="fbpmModel.Store.ProjectSchedules" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="ProjectDetailFlatDetail" Association="fbpmModel.Store.ProjectDetailFlatDetail">
-      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
-      <End Role="FlatDetail" EntitySet="FlatDetails" />
-    </AssociationSet>
-    <AssociationSet Name="ProjectDetailProjectSchedule" Association="fbpmModel.Store.ProjectDetailProjectSchedule">
-      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
-      <End Role="ProjectSchedule" EntitySet="ProjectSchedules" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="FlatDetails">
     <Key>
@@ -20,20 +12,23 @@
     </Key>
     <Property Name="FlatID" Type="varchar" Nullable="false" MaxLength="25" />
     <Property Name="ProjectID" Type="varchar" Nullable="false" MaxLength="2" />
-    <Property Name="SuperBuiltUpArea" Type="bigint" Nullable="true" />
-    <Property Name="LayoutImg" Type="varbinary(max)" Nullable="true" />
-    <Property Name="ProjectDetailProjectID" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="SuperBuiltUpArea" Type="bigint" />
+    <Property Name="LayoutImg" Type="image" />
+    <Property Name="ProjectDetailProjectID" Type="varchar" MaxLength="2" />
+    <Property Name="LayoutImgPath" Type="varchar" MaxLength="1000" />
+    <Property Name="LayoutImgType" Type="varchar" MaxLength="50" />
+    <Property Name="LayoutImage" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="ProjectDetails">
     <Key>
       <PropertyRef Name="ProjectID" />
     </Key>
     <Property Name="ProjectID" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="ProjectName" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="NoOfBlocks" Type="int" Nullable="true" />
-    <Property Name="NoOfFloors" Type="int" Nullable="true" />
-    <Property Name="NoOfFlats" Type="bigint" Nullable="true" />
-    <Property Name="Amenities" Type="varchar" Nullable="true" MaxLength="1500" />
+    <Property Name="ProjectName" Type="varchar" MaxLength="100" />
+    <Property Name="NoOfBlocks" Type="int" />
+    <Property Name="NoOfFloors" Type="int" />
+    <Property Name="NoOfFlats" Type="bigint" />
+    <Property Name="Amenities" Type="varchar" MaxLength="1500" />
   </EntityType>
   <EntityType Name="ProjectSchedules">
     <Key>
@@ -42,33 +37,9 @@
     </Key>
     <Property Name="ScheduleID" Type="int" Nullable="false" />
     <Property Name="ProjectID" Type="varchar" Nullable="false" MaxLength="2" />
-    <Property Name="ScheduleText" Type="varchar" Nullable="true" MaxLength="200" />
-    <Property Name="ScheduleDate" Type="datetime" Nullable="true" />
-    <Property Name="SchedulePercentage" Type="int" Nullable="true" />
-    <Property Name="ProjectDetailProjectID" Type="varchar" Nullable="false" MaxLength="25" />
+    <Property Name="ScheduleText" Type="varchar" MaxLength="200" />
+    <Property Name="ScheduleDate" Type="date" />
+    <Property Name="SchedulePercentage" Type="int" />
+    <Property Name="ProjectDetailProjectID" Type="varchar" MaxLength="2" />
   </EntityType>
-  <Association Name="ProjectDetailFlatDetail">
-    <End Role="ProjectDetail" Type="fbpmModel.Store.ProjectDetails" Multiplicity="1" />
-    <End Role="FlatDetail" Type="fbpmModel.Store.FlatDetails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectDetail">
-        <PropertyRef Name="ProjectID" />
-      </Principal>
-      <Dependent Role="FlatDetail">
-        <PropertyRef Name="ProjectDetailProjectID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ProjectDetailProjectSchedule">
-    <End Role="ProjectDetail" Type="fbpmModel.Store.ProjectDetails" Multiplicity="1" />
-    <End Role="ProjectSchedule" Type="fbpmModel.Store.ProjectSchedules" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProjectDetail">
-        <PropertyRef Name="ProjectID" />
-      </Principal>
-      <Dependent Role="ProjectSchedule">
-        <PropertyRef Name="ProjectDetailProjectID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

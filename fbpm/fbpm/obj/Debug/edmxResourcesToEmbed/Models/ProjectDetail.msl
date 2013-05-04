@@ -4,6 +4,9 @@
     <EntitySetMapping Name="FlatDetails">
       <EntityTypeMapping TypeName="IsTypeOf(fbpmModel.FlatDetail)">
         <MappingFragment StoreEntitySet="FlatDetails">
+          <ScalarProperty Name="LayoutImage" ColumnName="LayoutImage" />
+          <ScalarProperty Name="LayoutImgType" ColumnName="LayoutImgType" />
+          <ScalarProperty Name="LayoutImgPath" ColumnName="LayoutImgPath" />
           <ScalarProperty Name="FlatID" ColumnName="FlatID" />
           <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
           <ScalarProperty Name="SuperBuiltUpArea" ColumnName="SuperBuiltUpArea" />
