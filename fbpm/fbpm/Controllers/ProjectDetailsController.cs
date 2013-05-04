@@ -176,7 +176,12 @@ namespace fbpm.Controllers
 
         public FileContentResult GetImage(string id) { 
             FlatDetail fd = db.FlatDetails.Single(r => r.FlatID == id);
-            return File(fd.LayoutImage, fd.LayoutImgType);
+            if (fd.LayoutImage != null)
+            {
+                return File(fd.LayoutImage, fd.LayoutImgType);
+            }
+            else
+                return new FileContentResult(new byte[] { }, "JPG");
         }
 
         //Edit : Project Schedule
