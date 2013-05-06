@@ -1,0 +1,23 @@
+﻿@model fbpm.Models.UserDetail
+
+@{
+    ViewBag.Title = "Customer List";
+}
+
+<h2>Search for a Customer</h2>
+
+ Customer ID : <input type="text" id="cust" name="cust"/>
+<button type="button" onclick="handlesearch();"> Search </button>
+<br />
+<br />
+<div id='custlist'> Enter the Customer ID in the above field and click Search </div>
+
+<script type="text/javascript" language="javascript">
+    function handlesearch() {
+        $.get('@Url.Action("Index", "PaymentSchedule")?id=' + document.getElementById("cust").value,
+        function (viewResult) {
+            $("#custlist").html(viewResult);
+        });
+
+    }
+</script>

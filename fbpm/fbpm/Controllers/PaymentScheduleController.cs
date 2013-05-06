@@ -17,10 +17,13 @@ namespace fbpm.Controllers
         private fbpmUserEntities db1 = new fbpmUserEntities();
         //
         // GET: /User List/
-
-        public ViewResult Index()
+        public ViewResult SearchCust() {
+            return View();                
+        }
+        public ViewResult Index(string id)
         {
-            return View(db.UserDetails.ToList());
+            var cust = db.UserDetails.Where(c => c.UserID.Contains(id));
+            return View(cust.ToList());
         }
 
         //
@@ -58,7 +61,7 @@ namespace fbpm.Controllers
                 paymentschedule.ScheduleID = Guid.NewGuid();
                 db.PaymentSchedule.Add(paymentschedule);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("SearchCust");  
             }
 
             return View(paymentschedule);
@@ -70,7 +73,6 @@ namespace fbpm.Controllers
         public ActionResult Edit(Guid id)
         {
             PaymentSchedule paymentschedule = db.PaymentSchedule.Find(id);
-            ViewBag.UserDetailsUserID = new SelectList(db.UserDetails, "UserID", "Password", paymentschedule.UserDetailsUserID);
             return View(paymentschedule);
         }
 
@@ -84,9 +86,8 @@ namespace fbpm.Controllers
             {
                 db.Entry(paymentschedule).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("SearchCust");
             }
-            ViewBag.UserDetailsUserID = new SelectList(db.UserDetails, "UserID", "Password", paymentschedule.UserDetailsUserID);
             return View(paymentschedule);
         }
 
@@ -108,7 +109,7 @@ namespace fbpm.Controllers
             PaymentSchedule paymentschedule = db.PaymentSchedule.Find(id);
             db.PaymentSchedule.Remove(paymentschedule);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SearchCust");
         }
 
         protected override void Dispose(bool disposing)

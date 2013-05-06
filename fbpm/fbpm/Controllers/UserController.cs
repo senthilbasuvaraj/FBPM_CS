@@ -19,9 +19,14 @@ namespace fbpm.Controllers
         //
         // GET: /User/
 
-        public ViewResult Index()
+        public ViewResult SearchCust() {
+            return View();
+        }
+
+        public ViewResult Index(string id)
         {
-           return View(db.UserDetails.ToList());
+           var cust = db.UserDetails.Where(c => c.UserID.Contains(id)); 
+           return View(cust.ToList());
         }
 
         //
@@ -55,7 +60,7 @@ namespace fbpm.Controllers
             {
                 db.UserDetails.Add(userdetail);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("SearchCust");  
             }
 
             return View(userdetail);
@@ -81,7 +86,7 @@ namespace fbpm.Controllers
             {
                 db.Entry(userdetail).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("SearchCust");
             }
             return View(userdetail);
         }
@@ -104,7 +109,7 @@ namespace fbpm.Controllers
             UserDetail userdetail = db.UserDetails.Find(id);
             db.UserDetails.Remove(userdetail);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SearchCust");
         }
 
         protected override void Dispose(bool disposing)

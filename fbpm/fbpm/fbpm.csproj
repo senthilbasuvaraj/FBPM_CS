@@ -256,7 +256,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>UserModel.cs</LastGenOutput>
     </None>
-    <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
@@ -276,6 +275,11 @@
     <Content Include="Views\PaymentSchedule\Index.cshtml" />
     <Content Include="Views\PaymentSchedule\Details.cshtml" />
     <Content Include="Views\PaymentSchedule\CreatePaySched.cshtml" />
+    <Content Include="Views\User\SearchCust.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\PaymentSchedule\SearchCust.cshtml" />
+    <Content Include="Views\PaymentSchedule\Delete.cshtml" />
+    <Content Include="Views\PaymentSchedule\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
