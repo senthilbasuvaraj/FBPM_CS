@@ -138,7 +138,6 @@ namespace fbpm.Controllers
 
         public ActionResult EditFlat(string id)
         {
-          //  var flatdetail = from s in db.FlatDetails where s.FlatID.Equals(id)               select s;
             var flatdetail = db.FlatDetails.Single(r => r.FlatID == id);
             return View(flatdetail);
         }
@@ -148,24 +147,14 @@ namespace fbpm.Controllers
         {
             if (ModelState.IsValid)
             {
-                flatdetail.LayoutImage = new byte[file.ContentLength];
-                flatdetail.LayoutImgType = file.ContentType;
-                BinaryReader reader = new BinaryReader(file.InputStream);
-                flatdetail.LayoutImage = reader.ReadBytes(file.ContentLength);
-//                file.InputStream.Read(flatdetail.LayoutImg, 0, file.ContentLength);
-/*                if (file.ContentLength > 0)
+                if (file != null)
                 {
-                    string filename = Path.GetFileName(file.FileName);
-                    string fileExtension = Path.GetExtension(filename);
-                    if ((fileExtension == ".jpg") || (fileExtension == ".png"))
-                    {
-                        string path = Path.Combine(Server.MapPath("~/App_Data/uploads"), filename);
-                        file.SaveAs(path);
-                        flatdetail.LayoutImgPath = path;
-                    }
+                    flatdetail.LayoutImage = new byte[file.ContentLength];
+                    flatdetail.LayoutImgType = file.ContentType;
+                    BinaryReader reader = new BinaryReader(file.InputStream);
+                    flatdetail.LayoutImage = reader.ReadBytes(file.ContentLength);
                 }
-
-  */            db.Entry(flatdetail).State = EntityState.Modified;
+                db.Entry(flatdetail).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

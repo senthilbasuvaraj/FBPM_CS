@@ -23,6 +23,8 @@
     <Property Name="RemainingAmount" Type="Decimal" Precision="19" Scale="4" />
     <NavigationProperty Name="UserDetail" Relationship="fbpmUserPaySchedModel.UserDetailsPaymentSchedule" FromRole="PaymentSchedule" ToRole="UserDetails" />
     <Property Type="String" Name="UserDetailsUserID" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="ReceiptImage" MaxLength="Max" FixedLength="false" />
+    <Property Type="String" Name="ReceiptImageType" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="UserDetails">
     <Key>

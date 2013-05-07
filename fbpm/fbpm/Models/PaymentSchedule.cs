@@ -10,12 +10,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
 namespace fbpm.Models
 {
     public partial class PaymentSchedule
     {
-        [Display(Name="Schedule ID")]
+        [Display(Name = "Schedule ID")]
         public System.Guid ScheduleID { get; set; }
         [Display(Name = "User ID")]
         public string UserID { get; set; }
@@ -30,11 +29,15 @@ namespace fbpm.Models
         [Display(Name = "Booking Amount")]
         public Nullable<decimal> BookingAmount { get; set; }
         [Display(Name = "Schedule Amount ")]
+        [Required]
         public Nullable<decimal> ScheduleAmount { get; set; }
         [Display(Name = "Remaining Amount")]
         public Nullable<decimal> RemainingAmount { get; set; }
         public string UserDetailsUserID { get; set; }
-    
+        [Display(Name = "Upload Receipt")]
+        public byte[] ReceiptImage { get; set; }
+        public string ReceiptImageType { get; set; }
+
         public virtual UserDetails UserDetail { get; set; }
 
         public IEnumerable<UserDetail> UserDetailList { get; set; }

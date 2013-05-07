@@ -4,7 +4,7 @@
     ViewBag.Title = "EditFlat";
 }
 
-<h2>EditFlat</h2>
+<h2>Edit Flat</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
@@ -16,7 +16,7 @@
             })) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>FlatDetail</legend>
+        <legend>Flat Detail</legend>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.FlatID)
@@ -48,7 +48,7 @@
         <img src='/ProjectDetails/GetImage/@Html.DisplayFor(model => model.FlatID)' alt="" />
         </div>
         <div class="editor-field">
-            @Html.LabelFor(model => model.LayoutImg)
+            @Html.LabelFor(model => model.LayoutImage)
         </div>
              <input id="file" title="Upload a Flat Layout" type="file" name="file" />
         <p>

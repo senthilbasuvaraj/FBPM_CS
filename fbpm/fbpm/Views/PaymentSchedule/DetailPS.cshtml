@@ -1,0 +1,52 @@
+﻿@model fbpm.Models.PaymentSchedule
+
+@{
+    ViewBag.Title = "Detail Payment Schedule";
+}
+
+<h2>DetailPS</h2>
+
+<fieldset>
+    <legend>Payment Schedule</legend>
+
+    <div class="display-label">Schedule ID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ScheduleID)
+    </div>
+
+    <div class="display-label">User ID</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserID)
+    </div>
+
+    <div class="display-label">Schedule Text</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ScheduleText)
+    </div>
+
+    <div class="display-label">Schedule Date</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ScheduleDate)
+    </div>
+
+    <div class="display-label">Schedule Percentage</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.SchedulePercentage)
+    </div>
+
+    <div class="display-label">Schedule Amount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ScheduleAmount)
+    </div>
+
+    <div class="display-label">Remaining Amount</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RemainingAmount)
+    </div>
+    <div class="display-;abel"> Receipt Image</div>
+    <img src='/PaymentSchedule/GetImage/@Html.DisplayFor(model => model.ScheduleID)' alt="" />
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = @Html.DisplayFor(model => model.ScheduleID) }) |
+    @Html.ActionLink("Back to List", "SearchCust")
+</p>

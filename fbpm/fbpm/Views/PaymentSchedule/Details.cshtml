@@ -74,6 +74,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = @Html.DisplayFor(modelItem => item.ScheduleID) }) |
+                @Html.ActionLink("Details", "DetailPS", new { id = @Html.DisplayFor(modelItem => item.ScheduleID) }) |
                 @Html.ActionLink("Delete", "Delete", new { id = @Html.DisplayFor(modelItem => item.ScheduleID) })
             </td>
         </tr>

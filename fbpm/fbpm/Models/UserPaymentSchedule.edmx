@@ -5,61 +5,47 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="fbpmUserPaySchedModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityContainer Name="fbpmUserPaySchedModelStoreContainer">
-    <EntitySet Name="PaymentSchedule" EntityType="fbpmUserPaySchedModel.Store.PaymentSchedule" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserDetails" EntityType="fbpmUserPaySchedModel.Store.UserDetails" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="UserDetailsPaymentSchedule" Association="fbpmUserPaySchedModel.Store.UserDetailsPaymentSchedule">
-      <End Role="UserDetails" EntitySet="UserDetails" />
-      <End Role="PaymentSchedule" EntitySet="PaymentSchedule" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="PaymentSchedule">
-    <Key>
-      <PropertyRef Name="ScheduleID" />
-    </Key>
-    <Property Name="ScheduleID" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="ScheduleText" Type="varchar" Nullable="true" MaxLength="200" />
-    <Property Name="ScheduleDate" Type="datetime" Nullable="true" />
-    <Property Name="SchedulePercentage" Type="int" Nullable="true" />
-    <Property Name="BookedDate" Type="datetime" Nullable="true" />
-    <Property Name="BookingAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
-    <Property Name="ScheduleAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
-    <Property Name="RemainingAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
-    <Property Name="UserDetailsUserID" Type="varchar" Nullable="false" MaxLength="25" />
-  </EntityType>
-  <EntityType Name="UserDetails">
-    <Key>
-      <PropertyRef Name="UserID" />
-    </Key>
-    <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="25" />
-    <Property Name="EmailID" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="Contact1" Type="varchar" Nullable="true" MaxLength="12" />
-    <Property Name="Contact2" Type="varchar" Nullable="true" MaxLength="12" />
-    <Property Name="FullAddress" Type="varchar" Nullable="true" MaxLength="200" />
-    <Property Name="State" Type="varchar" Nullable="true" MaxLength="25" />
-    <Property Name="Country" Type="varchar" Nullable="true" MaxLength="20" />
-    <Property Name="Role" Type="int" Nullable="true" />
-    <Property Name="PANNo" Type="varchar" Nullable="true" MaxLength="10" />
-    <Property Name="ProjectName" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="BookedDate" Type="datetime" Nullable="true" />
-    <Property Name="BookedAmount" Type="decimal" Nullable="true" Precision="19" Scale="4" />
-    <Property Name="UserName" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <Association Name="UserDetailsPaymentSchedule">
-    <End Role="UserDetails" Type="fbpmUserPaySchedModel.Store.UserDetails" Multiplicity="1" />
-    <End Role="PaymentSchedule" Type="fbpmUserPaySchedModel.Store.PaymentSchedule" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserDetails">
-        <PropertyRef Name="UserID" />
-      </Principal>
-      <Dependent Role="PaymentSchedule">
-        <PropertyRef Name="UserDetailsUserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+        <EntityContainer Name="fbpmUserPaySchedModelStoreContainer">
+          <EntitySet Name="PaymentSchedule" EntityType="fbpmUserPaySchedModel.Store.PaymentSchedule" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserDetails" EntityType="fbpmUserPaySchedModel.Store.UserDetails" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="PaymentSchedule">
+          <Key>
+            <PropertyRef Name="ScheduleID" />
+          </Key>
+          <Property Name="ScheduleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="ScheduleText" Type="varchar" MaxLength="200" />
+          <Property Name="ScheduleDate" Type="date" />
+          <Property Name="SchedulePercentage" Type="int" />
+          <Property Name="BookedDate" Type="date" />
+          <Property Name="BookingAmount" Type="money" />
+          <Property Name="ScheduleAmount" Type="money" />
+          <Property Name="RemainingAmount" Type="money" />
+          <Property Name="UserDetailsUserID" Type="varchar" MaxLength="25" />
+          <Property Name="ReceiptImage" Type="varbinary(max)" />
+          <Property Name="ReceiptImageType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="25" />
+          <Property Name="EmailID" Type="varchar" MaxLength="50" />
+          <Property Name="Contact1" Type="varchar" MaxLength="12" />
+          <Property Name="Contact2" Type="varchar" MaxLength="12" />
+          <Property Name="FullAddress" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="varchar" MaxLength="25" />
+          <Property Name="Country" Type="varchar" MaxLength="20" />
+          <Property Name="Role" Type="int" />
+          <Property Name="PANNo" Type="varchar" MaxLength="10" />
+          <Property Name="ProjectName" Type="varchar" MaxLength="100" />
+          <Property Name="BookedDate" Type="date" />
+          <Property Name="BookedAmount" Type="money" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="fbpmUserPaySchedModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -86,6 +72,8 @@
           <Property Name="RemainingAmount" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="UserDetail" Relationship="fbpmUserPaySchedModel.UserDetailsPaymentSchedule" FromRole="PaymentSchedule" ToRole="UserDetails" />
           <Property Type="String" Name="UserDetailsUserID" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="ReceiptImage" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="ReceiptImageType" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -128,7 +116,9 @@
     <EntitySetMapping Name="PaymentSchedule">
       <EntityTypeMapping TypeName="IsTypeOf(fbpmUserPaySchedModel.PaymentSchedule)">
         <MappingFragment StoreEntitySet="PaymentSchedule">
-          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="ReceiptImageType" ColumnName="ReceiptImageType" />
+                <ScalarProperty Name="ReceiptImage" ColumnName="ReceiptImage" />
+                <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="ScheduleText" ColumnName="ScheduleText" />
           <ScalarProperty Name="ScheduleDate" ColumnName="ScheduleDate" />
