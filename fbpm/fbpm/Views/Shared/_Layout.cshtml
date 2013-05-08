@@ -1,8 +1,5 @@
 ﻿<!DOCTYPE html>
 <html>
-<style>
-    h1 {color:#5c87b2;}
-</style>
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
@@ -17,18 +14,10 @@
                 <h1>Dhruthi Infra Projects</h1>
             </div>
             <br />
+            <br />
             <div id="logindisplay">
                 @Html.Partial("_LogOnPartial")
             </div>
-            <nav>
-                <ul id="menu">
-                    <!--<li>@Html.ActionLink("Home", "Index", "Home")</li>-->
-                    <!--<li>@Html.ActionLink("About", "About", "Home")</li>-->
-                    <li>@Html.ActionLink("Project", "Index", "ProjectDetails")</li>
-                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
-                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
-                </ul>
-            </nav>
         </header>
         <section id="main">
             @RenderBody()

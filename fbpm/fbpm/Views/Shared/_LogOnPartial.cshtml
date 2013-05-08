@@ -5,3 +5,40 @@
 else {
     @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
 }
+
+@if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("SuperAdmin"))
+{
+    <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Project", "Index", "ProjectDetails")</li>
+                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
+                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
+                </ul>
+            </nav>
+}
+else if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Consultant"))
+{
+    <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
+                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
+                    </ul>
+                </nav>
+}
+else if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Accountant"))
+{
+    <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
+                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
+                    </ul>
+                </nav>
+}else if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Customer"))
+{
+    <nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
+                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
+                    </ul>
+                </nav>
+}
