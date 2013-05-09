@@ -159,8 +159,8 @@ namespace fbpm.Controllers
                 return RedirectToAction("Index");
             }
             return View(flatdetail);
-        }
-
+        }      
+        
         //Get Image
 
         public FileContentResult GetImage(string id) { 

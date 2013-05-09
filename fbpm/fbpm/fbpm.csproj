@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentScheduleController.cs" />
     <Compile Include="Controllers\ProjectDetailsController.cs" />
@@ -281,6 +282,9 @@
     <Content Include="Views\PaymentSchedule\Delete.cshtml" />
     <Content Include="Views\PaymentSchedule\Edit.cshtml" />
     <Content Include="Views\PaymentSchedule\DetailPS.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\GetFlat.cshtml" />
+    <Content Include="Views\Customer\paysched.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

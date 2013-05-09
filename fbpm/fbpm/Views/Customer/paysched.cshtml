@@ -1,0 +1,54 @@
+﻿@model IEnumerable<fbpm.Models.PaymentSchedule>
+
+@{
+    Layout = null;
+}
+
+<h2>Payment Schedule</h2>
+
+<table>
+    <tr>
+        <th>
+            Schedule ID
+        </th>
+        <th>
+            Schedule Description
+        </th>
+        <th>
+            Schedule Date
+        </th>
+        <th>
+            Schedule Percentage
+        </th>
+        <th>
+            Schedule Amount
+        </th>
+        <th>
+            Remaining Amount
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchedulePercentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingAmount)
+        </td>
+    </tr>
+}
+
+</table>

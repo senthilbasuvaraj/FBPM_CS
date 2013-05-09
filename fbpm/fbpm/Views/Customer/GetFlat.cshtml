@@ -1,0 +1,32 @@
+﻿@model fbpm.Models.FlatDetail
+
+@{
+    Layout = null;
+}
+
+
+<fieldset>
+    <legend>Flat Detail</legend>
+    <br />
+    <br />
+    <b> Flat </b> &nbsp;&nbsp;&nbsp;  @Html.DisplayFor(model => model.FlatID)
+    <br />
+    <br />
+    <b>Project Name </b> &nbsp;&nbsp;&nbsp;   <label id="pn"/>
+    <br />
+    <br />
+    <b> Super Built Up Area </b> &nbsp;&nbsp;&nbsp;   @Html.DisplayFor(model => model.SuperBuiltUpArea)
+    <br />
+    <br />
+    <div class="editor-field">
+        <img src='/Customer/GetImage/@Html.DisplayFor(model => model.FlatID)' alt="" />
+     </div>
+   <input id="flatid" type="hidden" value = @Html.DisplayFor(model => model.ProjectID)></input>
+</fieldset>
+
+<script type="text/javascript" language="javascript">
+    $.get('@Url.Action("GetProjName", "Customer")?id=' + document.getElementById("flatid").value,
+        function (pname) {
+            document.getElementById("pn").innerHTML = pname;
+        });
+</script>
