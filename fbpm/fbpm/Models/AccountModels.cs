@@ -38,6 +38,10 @@ namespace fbpm.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        [Required]
+        [Display(Name = "User Type")]
+        public IEnumerable<SelectListItem> UserType { get; set; }
+
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
