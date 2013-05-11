@@ -98,11 +98,18 @@ namespace fbpm.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateFlat(FlatDetail flatdetail)
+        public ActionResult CreateFlat(FlatDetail flatdetail, HttpPostedFileBase file)
         {
             ModelState.Clear();
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    flatdetail.LayoutImage = new byte[file.ContentLength];
+                    flatdetail.LayoutImgType = file.ContentType;
+                    BinaryReader reader = new BinaryReader(file.InputStream);
+                    flatdetail.LayoutImage = reader.ReadBytes(file.ContentLength);
+                }
                 db.Entry(flatdetail).State = EntityState.Modified;
                 db.FlatDetails.Add(flatdetail);
                 db.SaveChanges();

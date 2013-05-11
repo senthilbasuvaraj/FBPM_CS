@@ -55,34 +55,28 @@
     <br />
     <br />
     </div>
-    
     <div id="display" style="clear:both;">
-    <br />
-    <br />
-    <br />
-    <button type="button" style="width:150px" onclick="javascript:handleflat();" id="flat"> Flat </button>
-    <button type="button"style="width:150px" onclick="handleps();" id="paysched">Payment Schedule</button>
-    <br />
-    <div id="container" style="clear:both;" style="width:500px"> Click on the above button to display Flat/Payment Schedule </div>
-    <br />
     </div>
-
+    <br />
+    <div id="container" onclick=""> Click on the above button to display Flat/Payment Schedule </div>
+    <div id="container1" onclick=""> Click on the above button to display Flat/Payment Schedule </div>
 <script type="text/javascript" language="javascript">
     $.get('@Url.Action("GetRamt", "Customer")?id=' + document.getElementById("userid").value,
         function (amount) {
             document.getElementById("ramt").innerHTML = amount;
-
         });
-    function handleflat() {
-        $.get('@Url.Action("GetFlat", "Customer")?id=' + document.getElementById("userid").value,
-        function (viewResult) {
-            $("#container").html(viewResult);
+     $.get('@Url.Action("GetFlat", "Customer")?id=' + document.getElementById("userid").value,
+            function (viewResult) {
+               $("#container").html(viewResult);
+           });
+     $.get('@Url.Action("paysched", "Customer")?id=' + document.getElementById("userid").value,
+            function (viewResult) {
+            $("#container1").html(viewResult);
         });
-    }
-    function handleps() {
-        $.get('@Url.Action("paysched", "Customer")?id=' + document.getElementById("userid").value,
-        function (viewResult) {
-            $("#container").html(viewResult);
-        });
-    }
+    $('#container').click(function(e){
+        e.preventDefault();
+    });
+    $('#paysched').click(function (e) {
+        e.preventDefault();
+    });
 </script>

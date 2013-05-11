@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.Mvc;
 using fbpm.Models;
 using System.Web.Security;
+using System.IO;
+using System.Net;
 
 namespace fbpm.Controllers
 { 
@@ -70,6 +72,27 @@ namespace fbpm.Controllers
                      select s;
             return View(ps.ToList());
         }
+
+        //Image View for the receipt
+        public ViewResult payrecimg(Guid id)
+        {
+            var ps = db2.PaymentSchedule.Single(r => r.ScheduleID.Equals(id));
+            return View(ps);
+        }
+
+        //Download Receipt
+
+        public FileContentResult GetPSImage(Guid id)
+        {
+            PaymentSchedule ps = db2.PaymentSchedule.Single(r => r.ScheduleID.Equals(id));
+            if (ps.ReceiptImage != null)
+            {
+                return File(ps.ReceiptImage, ps.ReceiptImageType);
+            }
+            else
+                return new FileContentResult(new byte[] { }, "JPG");
+        }
+
 
         protected override void Dispose(bool disposing)
         {

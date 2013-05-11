@@ -10,55 +10,42 @@
 <fieldset>
     <legend>PaymentSchedule</legend>
 
-    <div class="display-label">ScheduleID</div>
+    <div class="display-label">Schedule ID</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.ScheduleID)
     </div>
 
-    <div class="display-label">UserID</div>
+    <div class="display-label">User ID</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.UserID)
     </div>
 
-    <div class="display-label">ScheduleText</div>
+    <div class="display-label">Schedule Description</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.ScheduleText)
     </div>
 
-    <div class="display-label">ScheduleDate</div>
+    <div class="display-label">Schedule Date</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.ScheduleDate)
     </div>
 
-    <div class="display-label">SchedulePercentage</div>
+    <div class="display-label">Schedule Percentage</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.SchedulePercentage)
     </div>
 
-    <div class="display-label">BookedDate</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.BookedDate)
-    </div>
-
-    <div class="display-label">BookingAmount</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.BookingAmount)
-    </div>
-
-    <div class="display-label">ScheduleAmount</div>
+    <div class="display-label">Schedule Amount</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.ScheduleAmount)
     </div>
 
-    <div class="display-label">RemainingAmount</div>
+    <div class="display-label">Remaining Amount</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.RemainingAmount)
     </div>
-
-    <div class="display-label">UserDetailsUserID</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserDetailsUserID)
-    </div>
+    <div class="display-label"> Receipt Image</div>
+    <img src='/PaymentSchedule/GetImage/@Html.DisplayFor(model => model.ScheduleID)' alt="" />
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
