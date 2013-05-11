@@ -29,7 +29,6 @@ namespace fbpm.Controllers
     public class ProjectDetailsController : Controller
     {
         private fbpmProjectDetailsEntities db = new fbpmProjectDetailsEntities();
-
         //
         // GET: /ProjectDetails/
 
@@ -55,6 +54,7 @@ namespace fbpm.Controllers
 
         public ViewResult Projschedule(string id)
         {
+            this.HttpContext.Session["SELPROJ"] = id;
             var ps = from s in db.ProjectSchedules
                      where s.ProjectID.Equals(id)
                      select s;
@@ -72,11 +72,13 @@ namespace fbpm.Controllers
         }
         public ActionResult CreateFlat()
         {
+            ViewBag.Message = this.HttpContext.Session["SELPROJ"];
             ModelState.Clear();
             return View();
         }
         public ActionResult CreateProjSched()
         {
+            ViewBag.Message = this.HttpContext.Session["SELPROJ"];
             ModelState.Clear();
             return View();
         } 

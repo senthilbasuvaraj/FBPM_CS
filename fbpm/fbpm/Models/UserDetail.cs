@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
 namespace fbpm.Models
 {
     public partial class UserDetail
@@ -42,8 +43,10 @@ namespace fbpm.Models
         [Display(Name = "Project Name")]
         public string ProjectName { get; set; }
         [Display(Name = "Booked Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> BookedDate { get; set; }
-        [Display(Name = "Booked Number")]
+        [Display(Name = "Booked Amount")]
+        [Required]
         public Nullable<decimal> BookedAmount { get; set; }
         [Display(Name = "User Name")]
         public string UserName { get; set; }

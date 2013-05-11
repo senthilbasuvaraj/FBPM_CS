@@ -18,7 +18,7 @@
             @Html.LabelFor(model => model.FlatID)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.FlatID)
+            @Html.TextBoxFor(model => model.FlatID, new { @Value = @ViewBag.Message })
             @Html.ValidationMessageFor(model => model.FlatID)
         </div>
 
@@ -26,7 +26,7 @@
             @Html.LabelFor(model => model.ProjectID)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.ProjectID)
+            @Html.TextBoxFor(model => model.ProjectID, new { @readonly = "readonly", @Value = @ViewBag.Message })
             @Html.ValidationMessageFor(model => model.ProjectID)
         </div>
 
@@ -47,6 +47,8 @@
         </p>
     </fieldset>
 }   
+
+The selected Project is @ViewBag.Message
 
 <div>
     @Html.ActionLink("Back to List", "Index")
