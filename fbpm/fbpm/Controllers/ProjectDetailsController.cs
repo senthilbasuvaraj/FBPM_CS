@@ -29,7 +29,6 @@ namespace fbpm.Controllers
     public class ProjectDetailsController : Controller
     {
         private fbpmProjectDetailsEntities db = new fbpmProjectDetailsEntities();
-
         //
         // GET: /ProjectDetails/
 
@@ -55,6 +54,7 @@ namespace fbpm.Controllers
 
         public ViewResult Projschedule(string id)
         {
+            this.HttpContext.Session["SELPROJ"] = id;
             var ps = from s in db.ProjectSchedules
                      where s.ProjectID.Equals(id)
                      select s;
@@ -72,11 +72,13 @@ namespace fbpm.Controllers
         }
         public ActionResult CreateFlat()
         {
+            ViewBag.Message = this.HttpContext.Session["SELPROJ"];
             ModelState.Clear();
             return View();
         }
         public ActionResult CreateProjSched()
         {
+            ViewBag.Message = this.HttpContext.Session["SELPROJ"];
             ModelState.Clear();
             return View();
         } 
@@ -98,11 +100,18 @@ namespace fbpm.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateFlat(FlatDetail flatdetail)
+        public ActionResult CreateFlat(FlatDetail flatdetail, HttpPostedFileBase file)
         {
             ModelState.Clear();
             if (ModelState.IsValid)
             {
+                if (file != null)
+                {
+                    flatdetail.LayoutImage = new byte[file.ContentLength];
+                    flatdetail.LayoutImgType = file.ContentType;
+                    BinaryReader reader = new BinaryReader(file.InputStream);
+                    flatdetail.LayoutImage = reader.ReadBytes(file.ContentLength);
+                }
                 db.Entry(flatdetail).State = EntityState.Modified;
                 db.FlatDetails.Add(flatdetail);
                 db.SaveChanges();
@@ -159,8 +168,8 @@ namespace fbpm.Controllers
                 return RedirectToAction("Index");
             }
             return View(flatdetail);
-        }
-
+        }      
+        
         //Get Image
 
         public FileContentResult GetImage(string id) { 

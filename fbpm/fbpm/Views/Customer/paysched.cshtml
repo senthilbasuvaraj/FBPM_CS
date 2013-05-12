@@ -1,0 +1,73 @@
+﻿@model IEnumerable<fbpm.Models.PaymentSchedule>
+
+@{
+    Layout = null;
+}
+
+<h2>Payment Schedule</h2>
+
+<table>
+    <tr>
+        <th>
+            Schedule ID
+        </th>
+        <th>
+            Schedule Description
+        </th>
+        <th>
+            Schedule Date
+        </th>
+        <th>
+            Schedule Percentage
+        </th>
+        <th>
+            Schedule Amount
+        </th>
+        <th>
+            Remaining Amount
+        </th>
+        <th>
+            Receipt
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleID)
+            <input id="schdid" type="hidden" value=@Html.DisplayFor(modelItem => item.ScheduleID) />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchedulePercentage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScheduleAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RemainingAmount)
+        </td>
+        <td>
+            @Html.ActionLink("Display Receipt", "payrecimg", new { id = @Html.DisplayFor(modelItem => item.ScheduleID) })
+
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+<div id="imagecont"> Click on the link to display the Receipt if any</div>
+
+<script language="javascript" type="text/javascript">
+    function getreceipt() {
+        $.get('@Url.Action("payrecimg", "Customer")?id=' + document.getElementById("schdid").value,
+        function (viewResult) {
+            $("#imagecont").html(viewResult);
+        });        
+    }
+</script>

@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentScheduleController.cs" />
     <Compile Include="Controllers\ProjectDetailsController.cs" />
@@ -174,11 +175,16 @@
     <Content Include="Models\ProjectDetail.edmx.sql" />
     <Content Include="Models\UserModel.edmx.sql" />
     <Content Include="Models\UserPaymentSchedule.edmx.sql" />
+    <Content Include="Scripts\DatePickerReady.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.ui.core.js" />
+    <Content Include="Scripts\jquery.ui.core.min.js" />
+    <Content Include="Scripts\jquery.ui.datepicker.js" />
+    <Content Include="Scripts\jquery.ui.datepicker.min.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -281,6 +287,13 @@
     <Content Include="Views\PaymentSchedule\Delete.cshtml" />
     <Content Include="Views\PaymentSchedule\Edit.cshtml" />
     <Content Include="Views\PaymentSchedule\DetailPS.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\GetFlat.cshtml" />
+    <Content Include="Views\Customer\paysched.cshtml" />
+    <Content Include="Views\Customer\payrecimg.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

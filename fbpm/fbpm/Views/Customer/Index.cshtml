@@ -1,0 +1,82 @@
+﻿@model fbpm.Models.UserDetail
+
+@{
+    ViewBag.Title = "My View";
+}
+
+<style type="text/css">
+    #top 
+    {
+        width:360px;
+        float: left;
+        height:100px;
+        border-left: 1px solid black;
+        border-bottom: 1px solid black;        
+    }
+    #right
+    {
+        width:360px;
+        float: left;
+        height:100px;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        border-bottom: 1px solid black;             
+    }
+</style>
+    <div id="top" class="display-field">
+    &nbsp;&nbsp;Name  &nbsp;&nbsp;  : @Html.DisplayFor(model => model.UserName)    
+    <br />
+    <br />
+    <input id="userid" type="hidden" value = @Html.DisplayFor(model => model.UserID)></input>
+    &nbsp;&nbsp;Address : @Html.DisplayFor(model => model.FullAddress) <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    @Html.DisplayFor(model => model.State) <br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     @Html.DisplayFor(model => model.Country)    
+     <br /> 
+     <br /> 
+    </div>
+    <div id="top" class="display-field">
+    &nbsp;&nbsp;PAN #  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; : @Html.DisplayFor(model => model.PANNo)
+    <br /><br />
+    &nbsp;&nbsp;Booked Date&nbsp;&nbsp;: @Html.DisplayFor(model => model.BookedDate)
+    <br />
+    <br />
+    <br />
+    <br />
+    </div>
+    <div id="right" class="display-field">
+    &nbsp;&nbsp; Booked Amount&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp; INR &nbsp; @Html.DisplayFor(model => model.BookedAmount)
+    <br /><br />
+    &nbsp;&nbsp; Remaining Amount &nbsp; : &nbsp; INR &nbsp; 
+    <label id="ramt"/>
+    <br />
+    <br />
+    <br />
+    <br />
+    </div>
+    <div id="display" style="clear:both;">
+    </div>
+    <br />
+    <div id="container" onclick=""> Click on the above button to display Flat/Payment Schedule </div>
+    <div id="container1" onclick=""> Click on the above button to display Flat/Payment Schedule </div>
+<script type="text/javascript" language="javascript">
+    $.get('@Url.Action("GetRamt", "Customer")?id=' + document.getElementById("userid").value,
+        function (amount) {
+            document.getElementById("ramt").innerHTML = amount;
+        });
+     $.get('@Url.Action("GetFlat", "Customer")?id=' + document.getElementById("userid").value,
+            function (viewResult) {
+               $("#container").html(viewResult);
+           });
+     $.get('@Url.Action("paysched", "Customer")?id=' + document.getElementById("userid").value,
+            function (viewResult) {
+            $("#container1").html(viewResult);
+        });
+    $('#container').click(function(e){
+        e.preventDefault();
+    });
+    $('#paysched').click(function (e) {
+        e.preventDefault();
+    });
+</script>

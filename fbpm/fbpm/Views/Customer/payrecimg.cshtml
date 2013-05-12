@@ -1,0 +1,35 @@
+﻿@model fbpm.Models.PaymentSchedule
+
+@{
+    ViewBag.Title = "Payment Schedule Detail";
+}
+
+<h2>Payment Schedule Detail</h2>
+
+<fieldset>
+    <legend>Payment Schedule</legend>
+    <br />
+    <b> Schedule ID : </b>
+    
+        @Html.DisplayFor(model => model.ScheduleID)
+    <br />
+    <br />
+    <b> Schedule Description : </b>
+
+        @Html.DisplayFor(model => model.ScheduleText)
+
+    <br /><br />
+    <b> Schedule Date :</b>        @Html.DisplayFor(model => model.ScheduleDate)
+    <br /><br />
+     <b> Schedule percentage :</b> @Html.DisplayFor(model => model.SchedulePercentage)
+    <br /><br />
+    <b> Schedule Amount :</b>      @Html.DisplayFor(model => model.ScheduleAmount)
+    <br /><br />
+    <b> Remaining Amount : </b>    @Html.DisplayFor(model => model.RemainingAmount)
+    <br /><br />
+    <b> Payment Receipt </b>
+    <br /><br />
+    <img src='/Customer/GetPSImage/@Html.DisplayFor(model => model.ScheduleID)' alt="" />
+</fieldset>
+
+    @Html.ActionLink("Back to my View", "Index", "Customer")

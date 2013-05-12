@@ -33,11 +33,13 @@ namespace fbpm.Controllers
 
         public ViewResult Details(string id)
         {
+            this.HttpContext.Session["USER"] = id;
+            var ps = db.PaymentSchedule.OrderByDescending(p => p.RemainingAmount).Where(c => c.UserID.Equals(id));
             var fd = from s in db.PaymentSchedule
                      where s.UserID.Equals(id)
                      select s;
 
-            return View(fd.ToList());
+            return View(ps.ToList());
         }
 
         //
@@ -45,11 +47,12 @@ namespace fbpm.Controllers
 
         public ActionResult CreatePaySched()
         {
-            var model = new PaymentSchedule
+            ViewBag.Message = this.HttpContext.Session["USER"];
+/*            var model = new PaymentSchedule
             {
                 UserDetailList = db1.UserDetails.ToList()
             };
-            return View(model);
+  */          return View();
         }
 
         // Detail: /PaymentSchedule/DetailPS
@@ -80,7 +83,7 @@ namespace fbpm.Controllers
                 var mycontroller = new PaymentScheduleController();
                 mycontroller.ControllerContext = ControllerContext;
                 decimal result = mycontroller.GetBalance(paymentschedule.UserID);
-                paymentschedule.RemainingAmount = result;
+                paymentschedule.RemainingAmount = result - paymentschedule.ScheduleAmount.Value;
                 db.PaymentSchedule.Add(paymentschedule);
                 db.SaveChanges();
                 return RedirectToAction("SearchCust");  
@@ -95,16 +98,16 @@ namespace fbpm.Controllers
         {
             decimal result;
             decimal remamt = 0;
-            PaymentSchedule ps1 = db.PaymentSchedule.First(r => r.UserID.Equals(uid));
-            PaymentSchedule ps2 = db.PaymentSchedule.OrderByDescending(p => p.RemainingAmount).First(r => r.UserID.Equals(uid));
+            PaymentSchedule ps1 = db.PaymentSchedule.FirstOrDefault(r => r.UserID.Equals(uid));
+            PaymentSchedule ps2 = db.PaymentSchedule.OrderByDescending(p => p.RemainingAmount).FirstOrDefault(r => r.UserID.Equals(uid));
             var ps = (from s in db.PaymentSchedule
                      where s.UserID.Equals(uid)
                      select s).ToList();
 
             UserDetails ud = db.UserDetails.Find(uid);
-            if (ps1.ScheduleID.Equals(ps2.ScheduleID)) //The first element is getting created
+            if (ps1 == null)
             {
-                result = ud.BookedAmount.Value - ps1.ScheduleAmount.Value;
+                result = ud.BookedAmount.Value;
             }
             else
             {
