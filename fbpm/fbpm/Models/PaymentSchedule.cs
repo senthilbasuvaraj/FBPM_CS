@@ -21,10 +21,13 @@ namespace fbpm.Models
         [Display(Name = "Schedule Description")]
         public string ScheduleText { get; set; }
         [Display(Name = "Schedule Date")]
+        [Required]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> ScheduleDate { get; set; }
         [Display(Name = "Schedule Percentage")]
         public Nullable<int> SchedulePercentage { get; set; }
         [Display(Name = "Booked Date")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> BookedDate { get; set; }
         [Display(Name = "Booking Amount")]
         public Nullable<decimal> BookingAmount { get; set; }

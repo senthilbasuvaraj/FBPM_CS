@@ -43,6 +43,8 @@ namespace fbpm.Models
         [Display(Name = "Project Name")]
         public string ProjectName { get; set; }
         [Display(Name = "Booked Date")]
+        [Required]
+        [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> BookedDate { get; set; }
         [Display(Name = "Booked Amount")]
