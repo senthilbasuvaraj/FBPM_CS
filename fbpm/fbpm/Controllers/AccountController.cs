@@ -6,12 +6,13 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using fbpm.Models;
+using System.Security.Principal;
 
 namespace fbpm.Controllers
 {
     public class AccountController : Controller
     {
-
+        private fbpmUserEntities userdb = new fbpmUserEntities();
         //
         // GET: /Account/LogOn
 
@@ -24,26 +25,52 @@ namespace fbpm.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult LogOn(LogOnModel model, string returnUrl)
+        public ActionResult LogOn(LogOnModel model, string returnUrl, FormCollection collection)
         {
+            MembershipUser logonuser;
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.UserName, model.Password))
+                var usertype = collection.GetValue("UserType");
+                if (usertype.AttemptedValue.Equals("Others"))
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    if (Membership.ValidateUser(model.UserName, model.Password))
                     {
-                        return Redirect(returnUrl);
+                        this.HttpContext.Session["userid"] = model.UserName;
+                        FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
+                        if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                            && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        ModelState.AddModelError("", "The user name or password provided is incorrect.");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                    var user = userdb.UserDetails.Find(model.UserName);
+                    if (user != null)
+                    {
+                        if (user.Password.Equals(model.Password))
+                        {
+                            this.HttpContext.Session["userid"] = model.UserName;
+                            return RedirectToAction("Index", "Customer");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "The password provided is incorrect. Please contact Dhruthi Infra Projects");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "The user name doesnt exist. Please contact Dhruthi Infra Projects");
+                    }
                 }
             }
 
