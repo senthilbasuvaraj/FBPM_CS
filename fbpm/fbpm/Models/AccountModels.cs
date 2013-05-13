@@ -40,7 +40,7 @@ namespace fbpm.Models
 
         [Required]
         [Display(Name = "User Type")]
-        public IEnumerable<SelectListItem> UserType { get; set; }
+        public String UserType { get; set; }
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }

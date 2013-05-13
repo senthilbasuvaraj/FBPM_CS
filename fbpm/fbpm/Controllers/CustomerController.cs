@@ -22,8 +22,9 @@ namespace fbpm.Controllers
 
         public ViewResult Index()
         {
-      //      var id = Membership.GetUser().ProviderUserKey;
-            UserDetail userdetail = db.UserDetails.Find("RHA");
+            //string id = Membership.GetUser().ProviderUserKey();
+            var id = this.HttpContext.Session["userid"];
+            UserDetail userdetail = db.UserDetails.Find(id);
             return View(userdetail);
         }
 
@@ -38,7 +39,7 @@ namespace fbpm.Controllers
         }
 
         public ViewResult GetFlat(string id) {
-            string uid = "FF001";
+            string uid = id;
             FlatDetail fd = db1.FlatDetails.First(f => f.FlatID.Equals(uid));
             return View(fd);
         }
