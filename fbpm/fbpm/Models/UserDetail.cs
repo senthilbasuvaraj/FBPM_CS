@@ -50,7 +50,7 @@ namespace fbpm.Models
         [Display(Name = "Booked Amount")]
         [Required]
         public Nullable<decimal> BookedAmount { get; set; }
-        [Display(Name = "User Name")]
+        [Display(Name = "Owner Name")]
         public string UserName { get; set; }
 
         public IEnumerable<ProjectDetail> ProjectDetail { get; set; }

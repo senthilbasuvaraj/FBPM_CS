@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace fbpm.Models
 {
@@ -32,6 +33,7 @@ namespace fbpm.Models
         public string ProjectName { get; set; }
         public Nullable<System.DateTime> BookedDate { get; set; }
         public Nullable<decimal> BookedAmount { get; set; }
+        [Display(Name = "Owner Name")]
         public string UserName { get; set; }
     
         public virtual ICollection<PaymentSchedule> PaymentSchedules { get; set; }

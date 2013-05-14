@@ -30,7 +30,8 @@
             @Html.LabelFor(model => model.ProjectID)
         </div>
         <div class="editor-field">
-            @Html.DisplayFor(model => model.ProjectID)
+            @Html.TextBoxFor(model => model.ProjectID, new { @readonly = "readonly" })
+            @Html.HiddenFor(model => model.FlatID)
             @Html.ValidationMessageFor(model => model.ProjectID)
         </div>
 

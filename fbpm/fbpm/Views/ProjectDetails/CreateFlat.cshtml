@@ -28,6 +28,7 @@
         <div class="editor-field">
             @Html.TextBoxFor(model => model.ProjectID, new { @readonly = "readonly", @Value = @ViewBag.Message })
             @Html.ValidationMessageFor(model => model.ProjectID)
+            @Html.HiddenFor(model => model.ProjectID)
         </div>
 
         <div class="editor-label">
@@ -39,7 +40,7 @@
         </div>
         <br />
         <div class="editor-field">
-            @Html.LabelFor(model => model.LayoutImg)
+            @Html.LabelFor(model => model.LayoutImage)
         </div>
          <input id="imguploadflatimage" title="Upload the Flat Layout" type="file" name="imguploadflatimage" />
         <p>
