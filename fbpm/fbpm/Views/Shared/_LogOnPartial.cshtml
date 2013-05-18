@@ -1,6 +1,6 @@
 ﻿@if(Request.IsAuthenticated) {
     <text>Welcome <strong>@User.Identity.Name</strong>!
-    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
+    [ @Html.ActionLink("Log Off", "LogOff", "Account") | @Html.ActionLink("Change Password", "ChangePassword", "Account") ]</text>
 }
 else {
     @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
@@ -8,37 +8,94 @@ else {
 
 @if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("SuperAdmin"))
 {
-    <nav>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li>@Html.ActionLink("Project", "Index", "ProjectDetails")</li>
+                    <li class="divider-vertical"></li>
+                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
+                    <li class="divider-vertical"></li>
+                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--<nav>
                 <ul id="menu">
                     <li>@Html.ActionLink("Project", "Index", "ProjectDetails")</li>
                     <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
                     <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
                 </ul>
-            </nav>
+            </nav>-->
 }
 else if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Consultant"))
 {
-    <nav>
+    <div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
+                    <li class="divider-vertical"></li>
+                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!--<nav>
                 <ul id="menu">
                     <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
                     <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
                     </ul>
-                </nav>
+                </nav>-->
 }
 else if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Accountant"))
 {
-    <nav>
+    <div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
+                    <li class="divider-vertical"></li>
+                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<nav>
                 <ul id="menu">
                     <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
                     <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
                     </ul>
-                </nav>
-}else if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Customer"))
+                </nav>-->
+}
+else if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Customer"))
 {
-    <nav>
+    <div class="navbar">
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
+                    <li class="divider-vertical"></li>
+                    <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<nav>
                 <ul id="menu">
                     <li>@Html.ActionLink("Customers", "SearchCust", "User")</li>
                     <li>@Html.ActionLink("Payment Schedule", "SearchCust", "PaymentSchedule")</li>
                     </ul>
-                </nav>
+                </nav>-->
 }
